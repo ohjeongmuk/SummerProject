@@ -1,7 +1,5 @@
 # User Open Novel
 
-![User Open Novel](https://your-image-url.com)
-
 ## Introduction
 
 User Open Novel is a platform designed for users to connect, share, and download internet novels while fostering communication and interaction among like-minded individuals. This project is developed as part of the CS 469 course and aims to provide a unique space for novel enthusiasts to explore and engage with their favorite stories.
@@ -22,7 +20,7 @@ Meet Mr. Han, a 34-year-old software developer working for a small software comp
 1. User Authentication
 2. File Management
 3. Novel Ranking
-4. Real-time Chat
+4. Real-time Chat (will discuss with Professor)
 
 ## Tools & Technologies
 
