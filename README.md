@@ -20,7 +20,7 @@ Meet Mr. Han, a 34-year-old software developer working for a small software comp
 1. User Authentication
 2. File Management
 3. Novel Ranking
-4. Real-time Chat (will discuss with Professor)
+4. Real-time Chat (will discuss with Prof)
 
 ## Tools & Technologies
 
