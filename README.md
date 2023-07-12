@@ -1,7 +1,5 @@
 # User Open Novel
 
-![User Open Novel](https://your-image-url.com)
-
 ## Introduction
 
 User Open Novel is a platform designed for users to connect, share, and download internet novels while fostering communication and interaction among like-minded individuals. This project is developed as part of the CS 469 course and aims to provide a unique space for novel enthusiasts to explore and engage with their favorite stories.
