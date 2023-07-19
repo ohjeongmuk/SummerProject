@@ -32,25 +32,11 @@ async def send_long_message(writer: asyncio.StreamWriter, data):
 
 async def connect():
     reader, writer = await asyncio.open_connection(IP, DPORT)    
-    count = 0
-    server_pw_res = str()
-    # TODO: PassWord SetUp
-    while (count < 3):
-        user_password = input("Password: ")
-        await send_long_message(writer, user_password)
-        server_pw_res = await recv_message(reader)
-        if server_pw_res == "Success\n":
-            break
-        elif server_pw_res == "Failed\n":
-            count += 1
-            if count == 3:
-                return 0
-            continue
-    
 
     # TODO: introduction message here
-    intro = await recv_intro_message(reader)
-    print(intro)
+    for i in range(0, 8):
+        message = await recv_intro_message(reader)
+        print(message)
 
     while(1):
         user_input = input("To server: ")
