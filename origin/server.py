@@ -3,30 +3,9 @@ os.chdir('myfiles')
 
 import socket
 import asyncio
-import pymongo
-import mongodb
 
 INTERFACE, SPORT = 'localhost', 8085
 CHUNK = 100
-
-client = pymongo.MongoClient("localhost", 27017)
-
-db = client["novel_db"]
-collection = db["novel"]
-
-async def insert_data(filename, title, author):
-    new_novel = {
-        "author": author,
-        "filename": filename,
-        "title": title,
-    }
-    if client is not None:
-        print("Connected to MongoDB server successfully!")
-    else:
-        print("Failed to connect to MongoDB server.")
-
-    collection.insert_one(new_novel)
-    print("Successfully inserted!")
 
 # TODO: Implement me for Part 1!
 async def send_intro_message(writer):
@@ -37,14 +16,15 @@ async def send_intro_message(writer):
 async def send_bash_intro(writer):
     intro_message = "----------Here is our command items you can use----------\n"
     command1 = "1. list: Check the list of files present on the server\n"
-    command2 = "2. put: Upload specific files that exist in myfiles to server files\n"
-    command3 = "3. get: Download a specific file that exists in server files to myfiles\n"
+    command2 = "2. upload: Upload specific files that exist in myfiles to server files\n"
+    command3 = "3. download: Download a specific file that exists in server files to myfiles\n"
     command4 = "4. remove: Delete a specific file that exists in myfiles\n"
     command5 = "5. close: Close the server.\n"
-    example = "(example) list | put filename | get filename | remove filename | close\n"
+    example = "(example) list | upload filename | download filename | remove filename | close\n"
     combined_string = intro_message + command1 + command2 + command3 + command4 + command5 + example
     writer.write(combined_string.encode())
     await writer.drain()
+
 
 async def send_message(writer, data):
     if type(data) == list:
@@ -105,6 +85,26 @@ async def remove_file(writer, file_name):
     return
 
 async def handle_client(reader, writer):
+
+    # password can not be used
+    """
+    pw = "1234"
+    count = 0
+    user_pw = str()
+    while(count < 3):
+        user_pw = await receive_long_message(reader)
+        print(user_pw)
+        if user_pw == pw:
+            await send_message(writer, "Success\n")
+            break
+        await send_message(writer, "Failed\n")
+        count += 1
+        if count == 3:
+            writer.close()
+            await writer.wait_closed()
+        continue
+    """
+
     # message print out
     await send_intro_message(writer)
     await send_bash_intro(writer)
@@ -121,22 +121,14 @@ async def handle_client(reader, writer):
             li = os.listdir("./")
             await send_message(writer, li)
             continue
-        # Client Send File to Server
+        # Client Send File to Client
         elif user_input[0] == "put":
-            """ 이 send_message는 upload 문자열을 통해서 클라이언트 조작을 위해 보내야한다"""
             await send_message(writer, "upload\n")
-
-            # Save title & author variables
-            title = await receive_long_message(reader)
-            author = await receive_long_message(reader)
-            await mongodb.insert_data(user_input[1], title, author)
-
-            # 파일 길이 물어본다.
             length = await receive_long_message(reader)
             length = int(length)
             await create_file(reader, length, user_input[1])
             continue
-        # Server Send file to Client
+        # Server Send file to Server
         elif user_input[0] == "get":
             await send_file(reader, writer, user_input[1])
             continue

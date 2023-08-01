@@ -32,6 +32,27 @@ async def send_long_message(writer: asyncio.StreamWriter, data):
 
 async def connect():
     reader, writer = await asyncio.open_connection(IP, DPORT)    
+    """
+    count = 0
+    server_pw_res = str()
+    # TODO: PassWord SetUp
+    while (count < 3):
+        user_password = input("Password: ")
+        await send_long_message(writer, user_password)
+        server_pw_res = await recv_message(reader)
+        if server_pw_res == "Success\n":
+            break
+        elif server_pw_res == "Failed\n":
+            count += 1
+            if count == 3:
+                return 0
+            continue
+    """
+    
+
+    # TODO: introduction message here
+    # intro = await recv_intro_message(reader)
+    # print(intro)
 
     # TODO: introduction message here
     for i in range(0, 8):
@@ -62,14 +83,7 @@ async def connect():
     
         # File Upload
         elif message == "upload\n":
-            # recieve 메세지; and then send title and author
-            print("uploading..")
-            title = input("Title: ")
-            await send_long_message(writer, title)
-            
-            author = input("Author: ")
-            await send_long_message(writer, author)
-
+            print("File Uploading...")
             # 파일 오픈..
             length = 0
             with open(user_input[1], "r") as f:
