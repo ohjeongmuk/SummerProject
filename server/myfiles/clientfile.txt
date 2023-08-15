@@ -4,25 +4,19 @@
 
 2. Goals for this week
 
-    1) It manages data by connecting MongoDB and Python.
-
-    2) Connect to school flip server and try port forwarding.
+    MongoDB connection
 
 3. What you accomplished
 
-The connection to the MongoDB server was successful and I can connect to the school flip server.
+    code fix
 
 4. How this compares with your plan
 
-    4 hours
-    1) When connecting to the MongoDB server and running vscode, no error occurs
-    , but data is not actually inserted into the MongoDB data collection.
-
-    2) I can connect to the school flip server
-    , but I need python 3.7 or higher to use the pymongo library for using mongodb.
+    Overall, many parts of the project have already been completed, so now I checked the ongoing project.
 
 5. Plan for next week
-    Connecting data management with MongoDB and port forwarding are important parts of this project. First of all, I will correct the error on this and I will introduce the Rank system to the current system.
+    1. MongoDB Data inserting/Removing Check out
+    2. Port Forwarding (Over Python 3.7)
 
 6. What is blocking you/help needed 
-    I wonder why data is not inserted into MongoDB data and whether Python 3.7 or higher can be downloaded to the school flip server.
+    Still waiting for the update of Python 3.7 from flipserver.

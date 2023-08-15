@@ -9,26 +9,6 @@ import mongodb
 INTERFACE, SPORT = 'localhost', 8085
 CHUNK = 100
 
-client = pymongo.MongoClient("localhost", 27017)
-
-db = client["novel_db"]
-collection = db["novel"]
-
-async def insert_data(filename, title, author):
-    new_novel = {
-        "author": author,
-        "filename": filename,
-        "title": title,
-    }
-    if client is not None:
-        print("Connected to MongoDB server successfully!")
-    else:
-        print("Failed to connect to MongoDB server.")
-
-    collection.insert_one(new_novel)
-    print("Successfully inserted!")
-
-# TODO: Implement me for Part 1!
 async def send_intro_message(writer):
     intro_message = "Hello! Welcome to JM's server!\n"
     writer.write(intro_message.encode())
@@ -68,7 +48,6 @@ async def receive_long_message(reader: asyncio.StreamReader):
     data_length = int(data_length_hex, 16)
     full_data = await reader.readexactly(data_length)
     return full_data.decode()
-
 
 # The file which exist on the path will be sent
 async def send_file(reader, writer, file_name):
@@ -123,7 +102,6 @@ async def handle_client(reader, writer):
             continue
         # Client Send File to Server
         elif user_input[0] == "put":
-            """ 이 send_message는 upload 문자열을 통해서 클라이언트 조작을 위해 보내야한다"""
             await send_message(writer, "upload\n")
 
             # Save title & author variables
@@ -131,7 +109,7 @@ async def handle_client(reader, writer):
             author = await receive_long_message(reader)
             await mongodb.insert_data(user_input[1], title, author)
 
-            # 파일 길이 물어본다.
+            # file length
             length = await receive_long_message(reader)
             length = int(length)
             await create_file(reader, length, user_input[1])

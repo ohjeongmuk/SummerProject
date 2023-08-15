@@ -19,8 +19,7 @@ Meet Mr. Han, a 34-year-old software developer working for a small software comp
 
 1. User Authentication
 2. File Management
-3. Novel Ranking
-4. Real-time Chat (will discuss with Prof)
+3. File info Insertion to MongoDB
 
 ## Tools & Technologies
 
@@ -33,9 +32,7 @@ Meet Mr. Han, a 34-year-old software developer working for a small software comp
 ### Libraries & Frameworks
 - Flask (web framework for server-side application)
 - Socket.IO (real-time, bidirectional communication)
-- Bootstrap (enhancing visual design and responsiveness)
-- bcrypt (password encryption)
-- MongoDB (database for user information, novels, and rankings)
+- MongoDB (database for user information, novels)
 - Hosting and Deployment: Heroku or AWS EC2
 - Version Control: Git, GitHub
 
@@ -61,18 +58,17 @@ Meet Mr. Han, a 34-year-old software developer working for a small software comp
 - Implement additional file management commands: file deletion, file details display
 
 ### Week 6
-- Conduct comprehensive testing of the application and fix any bugs
-- Document the project, including user manual, installation instructions, and code documentation
+- MongoDB Connection confirm
+- FTP confirmation
 
 ### Week 7
 - Write User review
 - Checks whether the following framwork works with Two machines: 
     (1) upload myfile
     (2) list
-    (3) rank file (in Server files)
-    (4) download file
-    (5) remove myfile
-    (6) close
+    (3) download file
+    (4) remove myfile
+    (5) close
 
 ### Week 8
 - Finalize project deliverables, including the final project report
